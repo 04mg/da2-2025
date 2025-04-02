@@ -26,7 +26,7 @@ public class CustomMethod
         if (returnCustomType == null)
             throw new ArgumentException("Return type cannot be null.");
     }
-    
+
     private static void EnsureMethodNameIsNotNullOrWhiteSpace(string name)
     {
         if (string.IsNullOrWhiteSpace(name))
@@ -67,5 +67,17 @@ public class CustomMethod
     {
         if (innerCustomMethod == null)
             throw new ArgumentException("Inner method cannot be null.");
+    }
+
+    public void Execute()
+    {
+        Console.WriteLine($"Executing method: {Name}");
+        ExecuteInnerMethods();
+    }
+
+    private void ExecuteInnerMethods()
+    {
+        foreach (var innerMethod in InnerMethods)
+            innerMethod.Execute();
     }
 }
