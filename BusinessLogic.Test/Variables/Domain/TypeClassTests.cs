@@ -1,12 +1,10 @@
+using BusinessLogic.Variables.Domain;
 using FluentAssertions;
-using BusinessLogic;
-using BusinessLogic.Types.Domain;
-using Type = BusinessLogic.Types.Domain.Type;
 
-namespace BusinessLogic.Test;
+namespace BusinessLogic.Test.Variables.Domain;
 
 [TestClass]
-public class TypeTests
+public class TypeClassTests
 {
     [TestMethod]
     public void Constructor_WithValidName_ShouldInitialize()
@@ -15,7 +13,7 @@ public class TypeTests
         var validName = "String";
 
         // Act
-        var type = new Type(validName);
+        var type = new TypeClass(validName);
 
         // Assert
         type.Name.Should().Be(validName);
