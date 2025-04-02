@@ -3,9 +3,9 @@ namespace BusinessLogic.Variables.Domain;
 public class Variable
 {
     public string? Name { get; }
-    public TypeClass? Type { get; }
+    public CustomType? Type { get; }
 
-    public Variable(string? name, TypeClass? type)
+    public Variable(string? name, CustomType? type)
     {
         EnsureNameIsNotNullOrWhitespace(name);
         EnsureTypeIsNotNull(type);
@@ -14,7 +14,7 @@ public class Variable
         Type = type;
     }
 
-    private static void EnsureTypeIsNotNull(TypeClass? type)
+    private static void EnsureTypeIsNotNull(CustomType? type)
     {
         if (type == null)
             throw new ArgumentException("Variable type cannot be null.");

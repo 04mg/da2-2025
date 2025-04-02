@@ -1,10 +1,10 @@
 namespace BusinessLogic.Variables.Domain;
 
-public class TypeClass
+public class CustomType
 {
     public string Name { get; init; }
 
-    public TypeClass(string name)
+    public CustomType(string name)
     {
         Name = name;
     }

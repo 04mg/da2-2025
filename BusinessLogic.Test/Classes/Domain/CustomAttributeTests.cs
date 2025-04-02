@@ -5,13 +5,13 @@ using FluentAssertions;
 namespace BusinessLogic.Test.Classes.Domain;
 
 [TestClass]
-public class AttributeClassTests
+public class CustomAttributeTests
 {
     [TestMethod]
     public void Constructor_WithValidParameters_ShouldInitializeProperties()
     {
-        var type = new TypeClass("string");
-        var attribute = new AttributeClass("username", type, Visibility.Public);
+        var type = new CustomType("string");
+        var attribute = new CustomAttribute("username", type, Visibility.Public);
 
         attribute.Name.Should().Be("username");
         attribute.Type.Should().Be(type);
@@ -21,8 +21,8 @@ public class AttributeClassTests
     [TestMethod]
     public void Constructor_WithNullName_ShouldThrowArgumentException()
     {
-        var type = new TypeClass("int");
-        var act = () => new AttributeClass(null, type, Visibility.Private);
+        var type = new CustomType("int");
+        var act = () => new CustomAttribute(null, type, Visibility.Private);
 
         act.Should().Throw<ArgumentException>();
     }
@@ -30,7 +30,7 @@ public class AttributeClassTests
     [TestMethod]
     public void Constructor_WithNullType_ShouldThrowArgumentException()
     {
-        var act = () => new AttributeClass("age", null, Visibility.Protected);
+        var act = () => new CustomAttribute("age", null, Visibility.Protected);
 
         act.Should().Throw<ArgumentException>();
     }

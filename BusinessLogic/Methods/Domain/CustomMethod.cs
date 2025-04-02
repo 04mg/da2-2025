@@ -3,27 +3,27 @@ using BusinessLogic.Variables.Domain;
 
 namespace BusinessLogic.Methods.Domain;
 
-public class MethodClass
+public class CustomMethod
 {
     public string Name { get; }
-    public TypeClass ReturnType { get; }
+    public CustomType ReturnCustomType { get; }
     public Visibility Visibility { get; }
     public List<Variable> Parameters { get; } = [];
     public List<Variable> LocalVariables { get; } = [];
-    public List<MethodClass> InnerMethods { get; } = [];
+    public List<CustomMethod> InnerMethods { get; } = [];
 
-    public MethodClass(string name, TypeClass returnType, Visibility visibility)
+    public CustomMethod(string name, CustomType returnCustomType, Visibility visibility)
     {
         EnsureMethodNameIsNotNullOrWhiteSpace(name);
-        EnsureReturnTypeIsNotNull(returnType);
+        EnsureReturnTypeIsNotNull(returnCustomType);
         Name = name;
-        ReturnType = returnType;
+        ReturnCustomType = returnCustomType;
         Visibility = visibility;
     }
 
-    private static void EnsureReturnTypeIsNotNull(TypeClass returnType)
+    private static void EnsureReturnTypeIsNotNull(CustomType returnCustomType)
     {
-        if (returnType == null)
+        if (returnCustomType == null)
             throw new ArgumentException("Return type cannot be null.");
     }
     
@@ -57,15 +57,15 @@ public class MethodClass
             throw new ArgumentException("Local variable cannot be null.");
     }
 
-    public void AddInnerMethod(MethodClass innerMethod)
+    public void AddInnerMethod(CustomMethod innerCustomMethod)
     {
-        EnsureInnerMethodIsNotNull(innerMethod);
-        InnerMethods.Add(innerMethod);
+        EnsureInnerMethodIsNotNull(innerCustomMethod);
+        InnerMethods.Add(innerCustomMethod);
     }
 
-    private static void EnsureInnerMethodIsNotNull(MethodClass innerMethod)
+    private static void EnsureInnerMethodIsNotNull(CustomMethod innerCustomMethod)
     {
-        if (innerMethod == null)
+        if (innerCustomMethod == null)
             throw new ArgumentException("Inner method cannot be null.");
     }
 }

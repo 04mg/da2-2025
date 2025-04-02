@@ -4,7 +4,7 @@ using FluentAssertions;
 namespace BusinessLogic.Test.Variables.Domain;
 
 [TestClass]
-public class TypeClassTests
+public class CustomTypeTests
 {
     [TestMethod]
     public void Constructor_WithValidName_ShouldInitialize()
@@ -13,7 +13,7 @@ public class TypeClassTests
         var validName = "String";
 
         // Act
-        var type = new TypeClass(validName);
+        var type = new CustomType(validName);
 
         // Assert
         type.Name.Should().Be(validName);

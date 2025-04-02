@@ -6,18 +6,18 @@ using FluentAssertions;
 namespace BusinessLogic.Test.Methods.Domain;
 
 [TestClass]
-public class MethodClassTests
+public class CustomMethodTests
 {
-    private readonly TypeClass _returnType = new TypeClass("void");
-    private readonly TypeClass _paramType = new TypeClass("int");
+    private readonly CustomType _returnCustomType = new CustomType("void");
+    private readonly CustomType _paramCustomType = new CustomType("int");
 
     [TestMethod]
     public void Constructor_WithValidParameters_ShouldInitializeEmptyLists()
     {
-        var method = new MethodClass("Execute", _returnType, Visibility.Public);
+        var method = new CustomMethod("Execute", _returnCustomType, Visibility.Public);
 
         method.Name.Should().Be("Execute");
-        method.ReturnType.Should().Be(_returnType);
+        method.ReturnCustomType.Should().Be(_returnCustomType);
         method.Visibility.Should().Be(Visibility.Public);
         method.Parameters.Should().BeEmpty();
         method.LocalVariables.Should().BeEmpty();
@@ -27,8 +27,8 @@ public class MethodClassTests
     [TestMethod]
     public void AddParameter_WithValidVariable_ShouldAddToParameters()
     {
-        var method = new MethodClass("Calculate", _returnType, Visibility.Public);
-        var parameter = new Variable("x", _paramType);
+        var method = new CustomMethod("Calculate", _returnCustomType, Visibility.Public);
+        var parameter = new Variable("x", _paramCustomType);
 
         method.AddParameter(parameter);
 
@@ -38,8 +38,8 @@ public class MethodClassTests
     [TestMethod]
     public void AddLocalVariable_WithValidVariable_ShouldAddToLocalVariables()
     {
-        var method = new MethodClass("Process", _returnType, Visibility.Private);
-        var localVar = new Variable("temp", _paramType);
+        var method = new CustomMethod("Process", _returnCustomType, Visibility.Private);
+        var localVar = new Variable("temp", _paramCustomType);
 
         method.AddLocalVariable(localVar);
 
@@ -49,8 +49,8 @@ public class MethodClassTests
     [TestMethod]
     public void AddInnerMethod_WithValidMethod_ShouldAddToInnerMethods()
     {
-        var parentMethod = new MethodClass("Parent", _returnType, Visibility.Protected);
-        var innerMethod = new MethodClass("Child", _returnType, Visibility.Private);
+        var parentMethod = new CustomMethod("Parent", _returnCustomType, Visibility.Protected);
+        var innerMethod = new CustomMethod("Child", _returnCustomType, Visibility.Private);
 
         parentMethod.AddInnerMethod(innerMethod);
 
@@ -60,7 +60,7 @@ public class MethodClassTests
     [TestMethod]
     public void AddParameter_WithNull_ShouldThrowArgumentException()
     {
-        var method = new MethodClass("Test", _returnType, Visibility.Public);
+        var method = new CustomMethod("Test", _returnCustomType, Visibility.Public);
         var act = () => method.AddParameter(null);
 
         act.Should().Throw<ArgumentException>();
